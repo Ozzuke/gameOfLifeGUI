@@ -32,4 +32,11 @@ All vasakus nurgas on tuluke, mis näitab, kas mäng parajasti jookseb (roheline
 - [ ] Mängulaua suuruse muutmine
 - [ ] Juhusliku algseisu genereerimine koos seatava tõenäosusega
 - [ ] Mängu seadete salvestamine ja laadimine
-- [ ] Mängu statistika
+- [ ] Mängu statistika?
+
+### Nõuetele vastavus
+- [ ] Klaviatuuri input (start/stop/lähtesta nt)
+- [ ] Erinditöötlus (kasutaja ekslik tegevus, nt start vajutamine kui juba käib)
+- [ ] Faili kirjutamine ja lugemine (seaded, statistika vms)
+- [ ] Koodi kommenteerimine (osaliselt tehtud, tahaks põhjalikumalt)
+- [ ] Rühmatöö põhjalikum kirjeldus README failis (klasside eesmärgid ja olulisemad meetodid, iga rühmaliikme panus ja ajakulu, tegemise mured, hinnang lõpptulemusele, kuidas testis
