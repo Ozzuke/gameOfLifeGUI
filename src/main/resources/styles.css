@@ -1,0 +1,51 @@
+/* Hele režiim */
+.root {
+    -fx-base: #f0f0f0;
+    -fx-background: #f0f0f0;
+}
+
+.button {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #999999;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.button:pressed {
+    -fx-background-color: #c0c0c0;
+}
+
+.label {
+    -fx-text-fill: #333333;
+}
+
+/* Tume režiim */
+.root.dark-mode {
+    -fx-base: #222222;
+    -fx-background: #222222;
+}
+
+.root.dark-mode .button {
+    -fx-background-color: #333333;
+    -fx-text-fill: #f0f0f0;
+    -fx-border-color: #999999;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.root.dark-mode .button:hover {
+    -fx-background-color: #444444;
+}
+
+.root.dark-mode .button:pressed {
+    -fx-background-color: #555555;
+}
+
+.root.dark-mode .label {
+    -fx-text-fill: #f0f0f0;
+}
