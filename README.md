@@ -28,6 +28,7 @@ All vasakus nurgas on tuluke, mis näitab, kas mäng parajasti jookseb (roheline
 - [x] Graafiline kasutajaliides
 - [x] Mängu alustamine, peatamine, lähtestamine
 - [x] Heleda ja tumeda režiimi vahetamine
+- [ ] Hiirega lohistades ruutude elus/surnud seadmine
 - [ ] Mängu kiiruse reguleerimine
 - [ ] Mängulaua suuruse muutmine
 - [ ] Juhusliku algseisu genereerimine koos seatava tõenäosusega
