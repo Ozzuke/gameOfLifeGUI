@@ -14,20 +14,20 @@ public class GameOfLifeApp extends Application {
     private boolean heleResiim = true;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage peaLava) {
         Mangulaud laud = new Mangulaud(lauaLaius, lauaPikkus, ruuduSuurus);
         Juhtimine juhtimine = new Juhtimine(laud);
 
-        BorderPane root = new BorderPane();
-        root.setCenter(laud);
-        root.setBottom(juhtimine);
-        root.setPadding(new Insets(10));
+        BorderPane juur = new BorderPane();
+        juur.setCenter(laud);
+        juur.setBottom(juhtimine);
+        juur.setPadding(new Insets(10));
 
         // Load the CSS file
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles.css");
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Game of Life");
-        primaryStage.show();
+        Scene stseen = new Scene(juur);
+        stseen.getStylesheets().add("/styles.css");
+        peaLava.setScene(stseen);
+        peaLava.setTitle("Game of Life");
+        peaLava.show();
     }
 }
