@@ -35,7 +35,7 @@ public class Juhtimine extends VBox {
         this.laud = laud;
 
         // Loome nupud mängu juhtimiseks
-        HBox buttonBox = getHBox();
+        HBox nupuKast = looNupuKast();
 
         // Loome olekusildi ja tulukese
         olekuSilt = new Label("Jookseb:");
@@ -45,48 +45,48 @@ public class Juhtimine extends VBox {
         tuluke.setEffect(tulukeseGlow);
 
         // Paigutame olekusildi ja tulukese horisontaalselt
-        HBox statusBox = new HBox(5, olekuSilt, tuluke);
-        statusBox.setAlignment(Pos.CENTER_LEFT);
+        HBox olekuKast = new HBox(5, olekuSilt, tuluke);
+        olekuKast.setAlignment(Pos.CENTER_LEFT);
 
         // Loome tühiku olekusildi ja nuppude vahele
         Region tühik = new Region();
         HBox.setHgrow(tühik, Priority.ALWAYS);
 
         // Paigutame olekusildi, tühiku ja nupud horisontaalselt
-        HBox bottomBox = new HBox(10, statusBox, tühik, buttonBox);
-        bottomBox.setAlignment(Pos.CENTER);
-        VBox.setMargin(bottomBox, new Insets(10, 0, 0, 0));
+        HBox juhtpaneeliKast = new HBox(10, olekuKast, tühik, nupuKast);
+        juhtpaneeliKast.setAlignment(Pos.CENTER);
+        VBox.setMargin(juhtpaneeliKast, new Insets(10, 0, 0, 0));
 
         // Seadistame vahemikud ja joonduse
         setSpacing(10);
         setAlignment(Pos.CENTER);
-        getChildren().add(bottomBox);
+        getChildren().add(juhtpaneeliKast);
 
         // Lisame hiirekliki kuulaja mängulauale
         laud.addEventHandler(MouseEvent.MOUSE_CLICKED, this::tegeleRuudulVajutusega);
     }
 
-    private HBox getHBox() {
-        Button startButton = new Button("Käivita");
-        Button stopButton = new Button("Peata");
-        Button resetButton = new Button("Lähtesta");
+    private HBox looNupuKast() {
+        Button käivitaNupp = new Button("Käivita");
+        Button peataNupp = new Button("Peata");
+        Button lähtestaNupp = new Button("Lähtesta");
 
         // Seome nupud vastavate meetoditega
-        startButton.setOnAction(e -> käivitaMäng());
-        stopButton.setOnAction(e -> peataMäng());
-        resetButton.setOnAction(e -> lähtesta());
+        käivitaNupp.setOnAction(e -> käivitaMäng());
+        peataNupp.setOnAction(e -> peataMäng());
+        lähtestaNupp.setOnAction(e -> lähtesta());
         režiimiNupp.setOnAction(e -> muudaRežiimi());
 
         // Paigutame nupud horisontaalselt
-        HBox buttonBox = new HBox(10, startButton, stopButton, resetButton, režiimiNupp);
-        buttonBox.setAlignment(Pos.CENTER_RIGHT);
-        return buttonBox;
+        HBox nupuKast = new HBox(10, käivitaNupp, peataNupp, lähtestaNupp, režiimiNupp);
+        nupuKast.setAlignment(Pos.CENTER_RIGHT);
+        return nupuKast;
     }
 
     // Meetod mängu käivitamiseks
     private void käivitaMäng() {
         if (!jookseb) {
-            mänguTsükkel = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> {
+            mänguTsükkel = new Timeline(new KeyFrame(Duration.seconds(0.1), e -> {
                 BitSet järgmineOlek = ManguOlek.järgmineOlek(laud.getRuudud(), laud.getLauaLaius(), laud.getLauaPikkus());
                 laud.uuendaLauda(järgmineOlek);
 
