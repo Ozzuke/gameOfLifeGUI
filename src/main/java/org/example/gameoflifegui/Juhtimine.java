@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -30,6 +31,7 @@ public class Juhtimine extends VBox {
     private DropShadow tulukeseGlow;
     private boolean heleRežiim = true;
     private Button režiimiNupp = new Button("Tume režiim");
+    private boolean lubaAinultKuiSeisab = false;
 
     public Juhtimine(Mangulaud laud) {
         this.laud = laud;
@@ -64,6 +66,7 @@ public class Juhtimine extends VBox {
 
         // Lisame hiirekliki kuulaja mängulauale
         laud.addEventHandler(MouseEvent.MOUSE_CLICKED, this::tegeleRuudulVajutusega);
+        laud.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::tegeleRuudulVajutusega);
     }
 
     private HBox looNupuKast() {
@@ -141,7 +144,7 @@ public class Juhtimine extends VBox {
 
     // Meetod hiirekliki käsitlemiseks mängulaual
     private void tegeleRuudulVajutusega(MouseEvent event) {
-        if (!jookseb) {
+        if (!lubaAinultKuiSeisab || !jookseb) {
             double ruuduSuurus = laud.getRuuduSuurus();
 
             int col = (int) (event.getX() / ruuduSuurus);
@@ -149,7 +152,11 @@ public class Juhtimine extends VBox {
 
             if (col >= 0 && col < laud.getLauaLaius() && row >= 0 && row < laud.getLauaPikkus()) {
                 int index = row * laud.getLauaLaius() + col;
-                laud.getRuudud().flip(index);
+                if (event.getButton() == MouseButton.SECONDARY){
+                    laud.getRuudud().clear(index);
+                } else {
+                    laud.getRuudud().set(index);
+                }
                 laud.uuendaDisplay();
             }
         }
