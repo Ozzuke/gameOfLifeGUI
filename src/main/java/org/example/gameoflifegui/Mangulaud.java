@@ -10,6 +10,11 @@ public class Mangulaud extends Pane {
     private int lauaLaius;
     private int lauaPikkus;
     private int ruuduSuurus;
+
+    public void setRuudud(BitSet ruudud) {
+        this.ruudud = ruudud;
+    }
+
     private BitSet ruudud;
     private Color taustaVärv;
     private Color ruuduServadeVärv;
@@ -47,11 +52,11 @@ public class Mangulaud extends Pane {
 
     // Meetod mängulaua kuvamise uuendamiseks
     public void uuendaDisplay() {
-        for (int row = 0; row < lauaPikkus; row++) {
-            for (int col = 0; col < lauaLaius; col++) {
-                int index = row * lauaLaius + col;
-                Rectangle cell = (Rectangle) getChildren().get(index);
-                cell.setFill(ruudud.get(index) ? elusRuuduVärv : taustaVärv);
+        for (int rida = 0; rida < lauaPikkus; rida++) {
+            for (int veerg = 0; veerg < lauaLaius; veerg++) {
+                int index = rida * lauaLaius + veerg;
+                Rectangle ruut = (Rectangle) getChildren().get(index);
+                ruut.setFill(ruudud.get(index) ? elusRuuduVärv : taustaVärv);
             }
         }
     }

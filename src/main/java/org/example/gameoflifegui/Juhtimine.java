@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -24,6 +25,7 @@ import java.util.BitSet;
 
 public class Juhtimine extends VBox {
     private Mangulaud laud;
+    private BitSet pildiBitSet;
     private Timeline mänguTsükkel;
     private boolean jookseb = false;
     private Label olekuSilt;
@@ -34,8 +36,12 @@ public class Juhtimine extends VBox {
     private boolean lubaAinultKuiSeisab = false;
 
     public Juhtimine(Mangulaud laud) {
-        this.laud = laud;
+        this(laud, new BitSet());
+    }
 
+    public Juhtimine(Mangulaud laud, BitSet pildiBitSet){
+        this.laud = laud;
+        this.pildiBitSet = (BitSet) pildiBitSet.clone();
         // Loome nupud mängu juhtimiseks
         HBox nupuKast = looNupuKast();
 
@@ -73,15 +79,17 @@ public class Juhtimine extends VBox {
         Button käivitaNupp = new Button("Käivita");
         Button peataNupp = new Button("Peata");
         Button lähtestaNupp = new Button("Lähtesta");
+        Button taastaPilt = new Button("Taasta Pilt");
 
         // Seome nupud vastavate meetoditega
         käivitaNupp.setOnAction(e -> käivitaMäng());
         peataNupp.setOnAction(e -> peataMäng());
         lähtestaNupp.setOnAction(e -> lähtesta());
+        taastaPilt.setOnAction(e -> taastaPilt());
         režiimiNupp.setOnAction(e -> muudaRežiimi());
 
         // Paigutame nupud horisontaalselt
-        HBox nupuKast = new HBox(10, käivitaNupp, peataNupp, lähtestaNupp, režiimiNupp);
+        HBox nupuKast = new HBox(10, käivitaNupp, peataNupp, lähtestaNupp, taastaPilt, režiimiNupp);
         nupuKast.setAlignment(Pos.CENTER_RIGHT);
         return nupuKast;
     }
@@ -112,6 +120,13 @@ public class Juhtimine extends VBox {
             jookseb = false;
             uuendaTulukest();
         }
+    }
+
+    // Meetod pildi taastamiseks, kui seda on
+    private void taastaPilt(){
+        laud.getRuudud().clear();
+        laud.setRuudud((BitSet) pildiBitSet.clone());
+        laud.uuendaDisplay();
     }
 
     // Meetod mängu lähtestamiseks
