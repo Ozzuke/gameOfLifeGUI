@@ -20,7 +20,7 @@ public class GameOfLifeApp extends Application {
 
     @Override
     public void start(Stage peaLava) throws FileNotFoundException {
-        PildiImport pilt = new PildiImport("glass.jpg", lauaPikkus, lauaLaius);
+        PildiImport pilt = new PildiImport("rickroll.jpeg", lauaPikkus, lauaLaius);
         Mangulaud laud = new Mangulaud(lauaLaius, lauaPikkus, ruuduSuurus);
         laud.setRuudud(pilt.piltToBitSet());
         laud.uuendaDisplay();
