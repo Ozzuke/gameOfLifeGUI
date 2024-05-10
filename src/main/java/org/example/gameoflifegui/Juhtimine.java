@@ -31,9 +31,9 @@ public class Juhtimine extends VBox {
     private Label olekuSilt;
     private Circle tuluke;
     private DropShadow tulukeseGlow;
-    private boolean heleRežiim = true;
-    private Button režiimiNupp = new Button("Tume režiim");
     private boolean lubaAinultKuiSeisab = false;
+    private Seaded seaded;
+
 
     public Juhtimine(Mangulaud laud) {
         this(laud, new BitSet());
@@ -42,6 +42,7 @@ public class Juhtimine extends VBox {
     public Juhtimine(Mangulaud laud, BitSet pildiBitSet){
         this.laud = laud;
         this.pildiBitSet = (BitSet) pildiBitSet.clone();
+        this.seaded = new Seaded(laud);
         // Loome nupud mängu juhtimiseks
         HBox nupuKast = looNupuKast();
 
@@ -80,16 +81,17 @@ public class Juhtimine extends VBox {
         Button peataNupp = new Button("Peata");
         Button lähtestaNupp = new Button("Lähtesta");
         Button taastaPilt = new Button("Taasta Pilt");
+        Button avaSeaded = new Button("Seaded");
 
         // Seome nupud vastavate meetoditega
         käivitaNupp.setOnAction(e -> käivitaMäng());
         peataNupp.setOnAction(e -> peataMäng());
         lähtestaNupp.setOnAction(e -> lähtesta());
         taastaPilt.setOnAction(e -> taastaPilt());
-        režiimiNupp.setOnAction(e -> muudaRežiimi());
+        avaSeaded.setOnAction(e -> avaSeaded());
 
         // Paigutame nupud horisontaalselt
-        HBox nupuKast = new HBox(10, käivitaNupp, peataNupp, lähtestaNupp, taastaPilt, režiimiNupp);
+        HBox nupuKast = new HBox(10, käivitaNupp, peataNupp, lähtestaNupp, taastaPilt, avaSeaded);
         nupuKast.setAlignment(Pos.CENTER_RIGHT);
         return nupuKast;
     }
@@ -113,6 +115,10 @@ public class Juhtimine extends VBox {
         }
     }
 
+    private void avaSeaded(){
+        seaded.avaSeaded();
+    }
+
     // Meetod mängu peatamiseks
     private void peataMäng() {
         if (jookseb) {
@@ -134,27 +140,6 @@ public class Juhtimine extends VBox {
         peataMäng();
         laud.getRuudud().clear();
         laud.uuendaDisplay();
-    }
-
-    // Meetod režiimi muutmiseks
-    private void muudaRežiimi() {
-        heleRežiim = !heleRežiim;
-        Color taust = heleRežiim ? Color.WHITE : Color.valueOf("#111");
-        Color ruuduServad = heleRežiim ? Color.GRAY : Color.GRAY.darker();
-        Color elusadRuudud = heleRežiim ? Color.BLACK : Color.WHITE;
-        režiimiNupp.setText(heleRežiim ? "Tume režiim" : "Hele režiim");
-        laud.setTaustaVärv(taust);
-        laud.setRuuduServadeVärv(ruuduServad);
-        laud.setElusRuuduVärv(elusadRuudud);
-        laud.uuendaDisplay();
-
-        // Muuda CSS-i klassi
-        Scene stseen = laud.getScene();
-        Parent juur = stseen.getRoot();
-        juur.getStyleClass().remove("dark-mode");
-        if (!heleRežiim) {
-            juur.getStyleClass().add("dark-mode");
-        }
     }
 
     // Meetod hiirekliki käsitlemiseks mängulaual

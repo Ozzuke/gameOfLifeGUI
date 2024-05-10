@@ -30,7 +30,7 @@ public class GameOfLifeApp extends Application {
         juur.setBottom(juhtimine);
         juur.setPadding(new Insets(10));
 
-        // Load the CSS file
+        // Lae CSS fail sisse
         Scene stseen = new Scene(juur);
         stseen.getStylesheets().add("/styles.css");
         peaLava.setScene(stseen);
