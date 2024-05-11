@@ -13,14 +13,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class GameOfLifeApp extends Application {
-    private int lauaLaius = 100;
-    private int lauaPikkus = 100;
-    private int ruuduSuurus = 5;
-    private boolean heleResiim = true;
-
+    private int lauaLaius = 1000;
+    private int lauaPikkus = 500;
+    private int ruuduSuurus = 1;
     @Override
     public void start(Stage peaLava) throws FileNotFoundException {
-        PildiImport pilt = new PildiImport("glass.jpg", lauaPikkus, lauaLaius);
+        PildiImport pilt = new PildiImport("nature.jpg", lauaPikkus, lauaLaius);
         Mangulaud laud = new Mangulaud(lauaLaius, lauaPikkus, ruuduSuurus);
         laud.setRuudud(pilt.piltToBitSet());
         laud.uuendaDisplay();

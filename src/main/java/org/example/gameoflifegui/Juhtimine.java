@@ -33,6 +33,7 @@ public class Juhtimine extends VBox {
     private DropShadow tulukeseGlow;
     private boolean lubaAinultKuiSeisab = false;
     private Seaded seaded;
+    private double mänguKiirus = 0.1;
 
 
     public Juhtimine(Mangulaud laud) {
