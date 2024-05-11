@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Seaded {
     private CheckBox režiimiNupp = new CheckBox();
@@ -42,7 +43,13 @@ public class Seaded {
     Button selectImageButton = new Button("Vali");
 
     // Seome nupud vastavate meetoditega
-    selectImageButton.setOnAction(e -> avaPilt());
+    selectImageButton.setOnAction(e -> {
+        try {
+            avaPilt();
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
+    });
     režiimiNupp.setOnAction(e -> muudaRežiimi());
 
     // Paigutame nupud ja sildid GridPane'i
@@ -83,7 +90,7 @@ public class Seaded {
             seadedJuur.getStyleClass().add("dark-mode");
         }
     }
-    private void avaPilt(){
+    private void avaPilt() throws FileNotFoundException {
         pildiValija.setTitle("Vali taustapilt");
         File valitudPilt = pildiValija.showOpenDialog(seadeLava);
         if (valitudPilt != null){

@@ -41,7 +41,7 @@ public class Juhtimine extends VBox {
 
     public Juhtimine(Mangulaud laud, BitSet pildiBitSet){
         this.laud = laud;
-        laud.setPildiBitSet((BitSet) pildiBitSet.clone());
+        laud.setPildiRuudud((BitSet) pildiBitSet.clone());
         this.seaded = new Seaded(laud);
         // Loome nupud mängu juhtimiseks
         HBox nupuKast = looNupuKast();
@@ -130,9 +130,7 @@ public class Juhtimine extends VBox {
 
     // Meetod pildi taastamiseks, kui seda on
     public void taastaPilt(){
-        laud.paneTaustapilt();
-        peataMäng();
-        laud.uuendaDisplay();
+        laud.taastaPilt();
     }
 
     // Meetod mängu lähtestamiseks
