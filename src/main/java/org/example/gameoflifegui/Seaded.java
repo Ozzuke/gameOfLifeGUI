@@ -4,42 +4,59 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class Seaded {
-    private Button režiimiNupp = new Button("Tume režiim");
+    private CheckBox režiimiNupp = new CheckBox();
     private boolean heleRežiim = true;
     private Mangulaud laud;
     private FileChooser pildiValija = new FileChooser();
-    private Scene seaded;
+    private Scene seadeStseen;
     private Stage seadeLava;
     public Seaded(Mangulaud laud){
         this.laud = laud;
-        seaded = new Scene(looSeadeKast());
-        seaded.getStylesheets().add("/styles.css");
+        seadeStseen = new Scene(looSeadeKast());
+        seadeStseen.getStylesheets().add("/styles.css");
         seadeLava = new Stage();
+        seadeLava.setMinWidth(200);
+        seadeLava.setMaxWidth(200);
+        seadeLava.setMinHeight(200);
         seadeLava.setTitle("Seaded");
-        seadeLava.setScene(seaded);
+        seadeLava.setScene(seadeStseen);
     }
     public void avaSeaded(){
         seadeLava.show();
     }
-    private VBox looSeadeKast() {
-        Button valiPiltNupp = new Button("Vali Pilt");
+    private GridPane looSeadeKast() {
+    Label darkModeLabel = new Label("Tume režiim");
+    Label selectBackgroundLabel = new Label("Vali taustapilt");
+    Button selectImageButton = new Button("Vali");
 
-        // Seome nupud vastavate meetoditega
-        valiPiltNupp.setOnAction(e -> avaPilt());
-        režiimiNupp.setOnAction(e -> muudaRežiimi());
+    // Seome nupud vastavate meetoditega
+    selectImageButton.setOnAction(e -> avaPilt());
+    režiimiNupp.setOnAction(e -> muudaRežiimi());
 
-        // Paigutame nupud horisontaalselt
-        VBox nupuKast = new VBox(2, režiimiNupp, valiPiltNupp);
-        nupuKast.setAlignment(Pos.CENTER);
-        return nupuKast;
-    }
+    // Paigutame nupud ja sildid GridPane'i
+    GridPane settingsPane = new GridPane();
+    settingsPane.setHgap(10);
+    settingsPane.setVgap(10);
+    settingsPane.add(darkModeLabel, 0, 0);
+    settingsPane.add(režiimiNupp, 1, 0);
+    settingsPane.add(new Separator(), 0, 1, 2, 1);
+    settingsPane.add(selectBackgroundLabel, 0, 2);
+    settingsPane.add(selectImageButton, 1, 2);
+    settingsPane.setAlignment(Pos.CENTER_RIGHT);
+    return settingsPane;
+}
     private void muudaRežiimi() {
         heleRežiim = !heleRežiim;
         Color taust = heleRežiim ? Color.WHITE : Color.valueOf("#111");
@@ -60,14 +77,17 @@ public class Seaded {
         }
 
         // Muuda seadete akent
-        Parent seadedJuur = seaded.getRoot();
+        Parent seadedJuur = seadeStseen.getRoot();
         seadedJuur.getStyleClass().remove("dark-mode");
         if (!heleRežiim){
             seadedJuur.getStyleClass().add("dark-mode");
         }
     }
     private void avaPilt(){
-        pildiValija.setTitle("vali oma pilt");
-        pildiValija.showOpenDialog(null);
+        pildiValija.setTitle("Vali taustapilt");
+        File valitudPilt = pildiValija.showOpenDialog(seadeLava);
+        if (valitudPilt != null){
+            laud.setTaustapilt(valitudPilt);
+        }
     }
 }

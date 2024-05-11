@@ -25,7 +25,6 @@ import java.util.BitSet;
 
 public class Juhtimine extends VBox {
     private Mangulaud laud;
-    private BitSet pildiBitSet;
     private Timeline mänguTsükkel;
     private boolean jookseb = false;
     private Label olekuSilt;
@@ -42,7 +41,7 @@ public class Juhtimine extends VBox {
 
     public Juhtimine(Mangulaud laud, BitSet pildiBitSet){
         this.laud = laud;
-        this.pildiBitSet = (BitSet) pildiBitSet.clone();
+        laud.setPildiBitSet((BitSet) pildiBitSet.clone());
         this.seaded = new Seaded(laud);
         // Loome nupud mängu juhtimiseks
         HBox nupuKast = looNupuKast();
@@ -121,7 +120,7 @@ public class Juhtimine extends VBox {
     }
 
     // Meetod mängu peatamiseks
-    private void peataMäng() {
+    public void peataMäng() {
         if (jookseb) {
             mänguTsükkel.stop();
             jookseb = false;
@@ -130,14 +129,14 @@ public class Juhtimine extends VBox {
     }
 
     // Meetod pildi taastamiseks, kui seda on
-    private void taastaPilt(){
-        laud.getRuudud().clear();
-        laud.setRuudud((BitSet) pildiBitSet.clone());
+    public void taastaPilt(){
+        laud.paneTaustapilt();
+        peataMäng();
         laud.uuendaDisplay();
     }
 
     // Meetod mängu lähtestamiseks
-    private void lähtesta() {
+    public void lähtesta() {
         peataMäng();
         laud.getRuudud().clear();
         laud.uuendaDisplay();
