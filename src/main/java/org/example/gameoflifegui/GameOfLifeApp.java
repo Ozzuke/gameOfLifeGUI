@@ -3,34 +3,25 @@ package org.example.gameoflifegui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class GameOfLifeApp extends Application {
-    private int lauaLaius = 1000;
-    private int lauaPikkus = 500;
-    private int ruuduSuurus = 1;
     @Override
-    public void start(Stage peaLava) throws FileNotFoundException {
-        PildiImport pilt = new PildiImport("nature.jpg", lauaPikkus, lauaLaius);
-        Mangulaud laud = new Mangulaud(lauaLaius, lauaPikkus, ruuduSuurus);
-        laud.setRuudud(pilt.piltToBitSet());
-        laud.uuendaDisplay();
-        Juhtimine juhtimine = new Juhtimine(laud, pilt.piltToBitSet());
+    public void start(Stage peaLava) {
+        Seaded seaded = Seaded.getInstance();
+        Laud laud = new Laud(seaded.getLauaLaius(), seaded.getLauaPikkus(), seaded.getRuuduSuurus());
+        Juhtpaneel juhtpaneel = new Juhtpaneel();
+        Juhtimine juhtimine = new Juhtimine(laud, juhtpaneel);
+
         BorderPane juur = new BorderPane();
         juur.setCenter(laud);
-        juur.setBottom(juhtimine);
+        juur.setBottom(juhtpaneel);
         juur.setPadding(new Insets(10));
 
-        // Lae CSS fail sisse
         Scene stseen = new Scene(juur);
         stseen.getStylesheets().add("/styles.css");
+
         peaLava.setScene(stseen);
         peaLava.setTitle("Game of Life");
         peaLava.show();

@@ -52,7 +52,6 @@ public class PildiImport {
                     laud.set(indeks);
                 }
             }
-
         }
         return laud;
     }
