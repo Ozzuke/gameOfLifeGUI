@@ -25,5 +25,7 @@ public class GameOfLifeApp extends Application {
         peaLava.setScene(stseen);
         peaLava.setTitle("Game of Life");
         peaLava.show();
+
+        juhtimine.looKlaviatuuriKuulajad();
     }
 }

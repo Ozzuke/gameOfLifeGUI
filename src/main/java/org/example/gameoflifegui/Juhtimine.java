@@ -3,6 +3,8 @@ package org.example.gameoflifegui;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -25,7 +27,13 @@ public class Juhtimine {
     }
 
     private void looNupuKuulajad() {
-        juhtpaneel.getKäivitaNupp().setOnAction(e -> käivitaMäng());
+        juhtpaneel.getKäivitaNupp().setOnAction(e -> {
+            try {
+                käivitaMäng();
+            } catch (ViganeStartVajutus ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
         juhtpaneel.getPeataNupp().setOnAction(e -> peataMäng());
         juhtpaneel.getLähtestaNupp().setOnAction(e -> lähtesta());
         juhtpaneel.getTaastaPilt().setOnAction(e -> taastaPilt());
@@ -37,8 +45,26 @@ public class Juhtimine {
         laud.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::tegeleRuudulVajutusega);
     }
 
-    private void käivitaMäng() {
-        if (!jookseb) {
+    public void looKlaviatuuriKuulajad() {
+        laud.getScene().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.P) {
+                if (jookseb) {
+                    peataMäng();
+                } else {
+                    try {
+                        käivitaMäng();
+                    } catch (ViganeStartVajutus ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                }
+            }
+        });
+    }
+
+    private void käivitaMäng() throws ViganeStartVajutus {
+        if (jookseb){
+            throw new ViganeStartVajutus();
+        } else {
             mänguTsükkel = new Timeline(new KeyFrame(Duration.seconds(seaded.getMänguKiirus()), e -> {
                 BitSet järgmineOlek = ManguOlek.järgmineOlek(laud.getRuudud(), laud.getLauaLaius(), laud.getLauaPikkus());
                 laud.uuendaLauda(järgmineOlek);
@@ -94,5 +120,9 @@ public class Juhtimine {
                 laud.uuendaDisplay();
             }
         }
+    }
+
+    public boolean isJookseb() {
+        return jookseb;
     }
 }

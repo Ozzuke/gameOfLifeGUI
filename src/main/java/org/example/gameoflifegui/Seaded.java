@@ -2,11 +2,15 @@ package org.example.gameoflifegui;
 
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Seaded {
     private static Seaded instance;
     private int lauaLaius = 100;
     private int lauaPikkus = 100;
-    private int ruuduSuurus = 7;
+    private int ruuduSuurus = 2;
     private boolean heleRežiim = true;
     private double mänguKiirus = 0.1;
     private boolean lubaAinultKuiSeisab = false;
