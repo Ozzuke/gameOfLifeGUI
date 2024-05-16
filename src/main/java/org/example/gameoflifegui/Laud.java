@@ -60,15 +60,15 @@ public class Laud extends Canvas {
         PixelWriter pixelWriter = boardImage.getPixelWriter();
 
         // joonistab kõik ruudud
-        for (int row = 0; row < lauaPikkus; row++) {
-            for (int col = 0; col < lauaLaius; col++) {
-                int index = row * lauaLaius + col;
-                Color color = ruudud.get(index) ? elusRuuduVärv : taustaVärv;
+        for (int rida = 0; rida < lauaPikkus; rida++) {
+            for (int veerg = 0; veerg < lauaLaius; veerg++) {
+                int indeks = rida * lauaLaius + veerg;
+                Color color = ruudud.get(indeks) ? elusRuuduVärv : taustaVärv;
 
                 // joonistab ruudu
                 for (int y = 0; y < ruuduSuurus; y++) {
                     for (int x = 0; x < ruuduSuurus; x++) {
-                        pixelWriter.setColor(col * ruuduSuurus + x, row * ruuduSuurus + y, color);
+                        pixelWriter.setColor(veerg * ruuduSuurus + x, rida * ruuduSuurus + y, color);
                     }
                 }
             }
