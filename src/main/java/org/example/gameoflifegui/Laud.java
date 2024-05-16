@@ -6,8 +6,11 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.BitSet;
 
 public class Laud extends Canvas {
@@ -110,6 +113,23 @@ public class Laud extends Canvas {
         this.setPildiRuudud(pildiImport.piltToBitSet());
         this.setRuudud(pildiImport.piltToBitSet());
         this.uuendaDisplay();
+    }
+    public void salvestaPilt(String filename) {
+        BufferedImage pilt = new BufferedImage(getLauaLaius(), getLauaPikkus(), BufferedImage.TYPE_INT_RGB);
+
+        for (int y = 0; y < getLauaPikkus(); y++) {
+            for (int x = 0; x < getLauaLaius(); x++) {
+                int index = y * getLauaLaius() + x;
+                java.awt.Color värv = getRuudud().get(index) ? java.awt.Color.BLACK : java.awt.Color.WHITE;
+                pilt.setRGB(x, y, värv.getRGB());
+            }
+        }
+
+        try {
+            ImageIO.write(pilt, "png", new File(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setRuudud(BitSet ruudud) {

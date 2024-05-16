@@ -28,7 +28,7 @@ All vasakus nurgas on tuluke, mis näitab, kas mäng parajasti jookseb (roheline
 - [x] Graafiline kasutajaliides
 - [x] Mängu alustamine, peatamine, lähtestamine
 - [x] Heleda ja tumeda režiimi vahetamine
-- [ ] Hiirega lohistades ruutude elus/surnud seadmine
+- [x] Hiirega lohistades ruutude elus/surnud seadmine
 - [ ] Mängu kiiruse reguleerimine
 - [ ] Mängulaua suuruse muutmine
 - [ ] Juhusliku algseisu genereerimine koos seatava tõenäosusega
@@ -36,8 +36,8 @@ All vasakus nurgas on tuluke, mis näitab, kas mäng parajasti jookseb (roheline
 - [ ] Mängu statistika?
 
 ### Nõuetele vastavus
-- [ ] Klaviatuuri input (start/stop/lähtesta nt)
-- [ ] Erinditöötlus (kasutaja ekslik tegevus, nt start vajutamine kui juba käib)
+- [x] Klaviatuuri input (start/stop/lähtesta nt)
+- [x] Erinditöötlus (kasutaja ekslik tegevus, nt start vajutamine kui juba käib)
 - [ ] Faili kirjutamine ja lugemine (seaded, statistika vms)
 - [ ] Koodi kommenteerimine (osaliselt tehtud, tahaks põhjalikumalt)
 - [ ] Rühmatöö põhjalikum kirjeldus README failis (klasside eesmärgid ja olulisemad meetodid, iga rühmaliikme panus ja ajakulu, tegemise mured, hinnang lõpptulemusele, kuidas testis

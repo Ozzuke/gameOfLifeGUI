@@ -3,6 +3,7 @@ package org.example.gameoflifegui;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -31,7 +32,11 @@ public class Juhtimine {
             try {
                 käivitaMäng();
             } catch (ViganeStartVajutus ex) {
-                System.out.println(ex.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText(ex.getMessage());
+                alert.showAndWait();
             }
         });
         juhtpaneel.getPeataNupp().setOnAction(e -> peataMäng());
