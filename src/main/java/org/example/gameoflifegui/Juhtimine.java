@@ -109,15 +109,15 @@ public class Juhtimine {
         seadedAken.avaSeaded();
     }
 
-    private void tegeleRuudulVajutusega(MouseEvent event) {
+    private void tegeleRuudulVajutusega(MouseEvent sündmus) {
         if (!jookseb || !seaded.isLubaAinultKuiSeisab()) {
             double ruuduSuurus = laud.getRuuduSuurus();
-            int col = (int) (event.getX() / ruuduSuurus);
-            int row = (int) (event.getY() / ruuduSuurus);
+            int veerg = (int) (sündmus.getX() / ruuduSuurus);
+            int rida = (int) (sündmus.getY() / ruuduSuurus);
 
-            if (col >= 0 && col < laud.getLauaLaius() && row >= 0 && row < laud.getLauaPikkus()) {
-                int index = row * laud.getLauaLaius() + col;
-                if (event.getButton() == MouseButton.SECONDARY) {
+            if (veerg >= 0 && veerg < laud.getLauaLaius() && rida >= 0 && rida < laud.getLauaPikkus()) {
+                int index = rida * laud.getLauaLaius() + veerg;
+                if (sündmus.getButton() == MouseButton.SECONDARY) {
                     laud.getRuudud().clear(index);
                 } else {
                     laud.getRuudud().set(index);
