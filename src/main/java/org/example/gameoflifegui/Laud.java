@@ -35,10 +35,10 @@ public class Laud extends Canvas {
         this.elusRuuduVärv = Color.BLACK;
         this.kasBorder = ruuduSuurus > 4;
 
-        initializeBoard();
+        initsialiseeriLaud();
     }
 
-    private void initializeBoard() {
+    private void initsialiseeriLaud() {
         this.gc = this.getGraphicsContext2D();
         this.setWidth(lauaLaius * ruuduSuurus);
         this.setHeight(lauaPikkus * ruuduSuurus);
@@ -59,11 +59,13 @@ public class Laud extends Canvas {
         WritableImage boardImage = new WritableImage(lauaLaius * ruuduSuurus, lauaPikkus * ruuduSuurus);
         PixelWriter pixelWriter = boardImage.getPixelWriter();
 
+        // joonistab kõik ruudud
         for (int row = 0; row < lauaPikkus; row++) {
             for (int col = 0; col < lauaLaius; col++) {
                 int index = row * lauaLaius + col;
                 Color color = ruudud.get(index) ? elusRuuduVärv : taustaVärv;
 
+                // joonistab ruudu
                 for (int y = 0; y < ruuduSuurus; y++) {
                     for (int x = 0; x < ruuduSuurus; x++) {
                         pixelWriter.setColor(col * ruuduSuurus + x, row * ruuduSuurus + y, color);
@@ -72,6 +74,7 @@ public class Laud extends Canvas {
             }
         }
 
+        // joonistab ühe pariina ruudud lauale
         gc.drawImage(boardImage, 0, 0);
     }
 
@@ -79,17 +82,20 @@ public class Laud extends Canvas {
         WritableImage lauaPilt = new WritableImage(lauaLaius * ruuduSuurus, lauaPikkus * ruuduSuurus);
         PixelWriter pixelWriter = lauaPilt.getPixelWriter();
 
+        // joonistab kõik ruudud
         for (int rida = 0; rida < lauaPikkus; rida++) {
             for (int veerg = 0; veerg < lauaLaius; veerg++) {
                 int index = rida * lauaLaius + veerg;
                 Color praeguseRuuduVärv = ruudud.get(index) ? elusRuuduVärv : taustaVärv;
 
+                // joonistab ääre ruudu
                 for (int y = 0; y < ruuduSuurus; y++) {
                     for (int x = 0; x < ruuduSuurus; x++) {
                         pixelWriter.setColor(veerg * ruuduSuurus + x, rida * ruuduSuurus + y, ruuduServadeVärv);
                     }
                 }
 
+                // joonistab väiksema aktiivse ruudu
                 for (int y = 1; y < ruuduSuurus - 1; y++) {
                     for (int x = 1; x < ruuduSuurus - 1; x++) {
                         pixelWriter.setColor(veerg * ruuduSuurus + x, rida * ruuduSuurus + y, praeguseRuuduVärv);
@@ -98,6 +104,7 @@ public class Laud extends Canvas {
             }
         }
 
+        // joonistab ühe pariina ruudud lauale
         gc.drawImage(lauaPilt, 0, 0);
     }
 
@@ -114,23 +121,25 @@ public class Laud extends Canvas {
         this.setRuudud(pildiImport.piltToBitSet());
         this.uuendaDisplay();
     }
-    public void salvestaPilt(String filename) {
+    public void salvestaPilt(String failiNimi) {
         BufferedImage pilt = new BufferedImage(getLauaLaius(), getLauaPikkus(), BufferedImage.TYPE_INT_RGB);
 
         for (int y = 0; y < getLauaPikkus(); y++) {
             for (int x = 0; x < getLauaLaius(); x++) {
-                int index = y * getLauaLaius() + x;
-                java.awt.Color värv = getRuudud().get(index) ? java.awt.Color.BLACK : java.awt.Color.WHITE;
+                int indeks = y * getLauaLaius() + x;
+                java.awt.Color värv = getRuudud().get(indeks) ? java.awt.Color.BLACK : java.awt.Color.WHITE;
                 pilt.setRGB(x, y, värv.getRGB());
             }
         }
 
         try {
-            ImageIO.write(pilt, "png", new File(filename));
+            ImageIO.write(pilt, "png", new File(failiNimi));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    // Getterid ja setterid
 
     public void setRuudud(BitSet ruudud) {
         this.ruudud = ruudud;

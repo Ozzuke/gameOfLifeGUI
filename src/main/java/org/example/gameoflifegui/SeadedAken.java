@@ -40,8 +40,8 @@ public class SeadedAken {
     }
 
     private GridPane looSeadeKast() {
-        Label darkModeLabel = new Label("Tume režiim");
-        Label selectBackgroundLabel = new Label("Vali taustapilt");
+        Label tumeRežiimiSilt = new Label("Tume režiim");
+        Label valiTaustapiltSilt = new Label("Vali taustapilt");
         Label salvestaSeadeidSilt = new Label("Salvesta seadeid");
         Label slavestaPiltSilt = new Label("Salvesta Pilt");
         Button valiPiltNupp = new Button("Vali");
@@ -62,10 +62,10 @@ public class SeadedAken {
         GridPane settingsPane = new GridPane();
         settingsPane.setHgap(10);
         settingsPane.setVgap(10);
-        settingsPane.add(darkModeLabel, 0, 0);
+        settingsPane.add(tumeRežiimiSilt, 0, 0);
         settingsPane.add(režiimiNupp, 1, 0);
         settingsPane.add(new Separator(), 0, 1, 2, 1);
-        settingsPane.add(selectBackgroundLabel, 0, 2);
+        settingsPane.add(valiTaustapiltSilt, 0, 2);
         settingsPane.add(valiPiltNupp, 1, 2);
         settingsPane.add(salvestaSeadeidSilt, 0, 3);
         settingsPane.add(salvestaSeadedNupp, 1, 3);

@@ -45,6 +45,59 @@ Tegeleb ruudul vajutusega, muutes ruudu elusaks või surnuks
 ### `Juhtpaneel`
 Vastutab mängu juhtpaneeli eest, kus on nupud mängu alustamiseks, peatamiseks, lähtestamiseks, valitud taustapildi taastamiseks ja seadete avamiseks
 
+### `Laud`
+Vastutab mängulaua eest, kus on ruudud ja nende elusoleku olek
+
+#### `initsialiseeriLaud()`
+Initsialiseerib mängulaua
+
+#### `uuendaLaud()`
+Uuendab mängulaua uute ruutudega
+
+#### `uuendaDisplay()`
+joonistab olemasolevad ruudud ekraanile
+
+#### `setTaustapilt(File valitudPilt)`
+joonistab valitud pildi mängulauale
+
+#### `salvestaPilt(String failiNimi)`
+salvestab mängulaua pildi faili
+
+### `Main`
+Klass, mis käivitab mängu
+
+### `ManguOlek`
+Klass, mis vastutab mängu järgmise oleku arvutamise eest
+
+#### `järgmineOlek(BitSet eelmine, int lauaLaius, int lauaPikkus)`
+Arvutab mängulaua järgmise oleku vastavalt eelmisele olekule ning tagastab selle
+
+### `PildiImport`
+Klass, mis vastutab pildi importimise eest
+
+#### `piltToBitSet`
+Muudab sisseloetud pildi bitsetiks
+
+#### `keskmineHeledus()`
+Arvutab pildi keskmise heleduse
+
+### `Seaded`
+Klass, mis hoiab mängu seadeid
+
+### `SeadedAken`
+Klass, mis vastutab seadete akna eest, mis tuleb ette, kui kasutaja vajutab nupule Seaded
+
+#### `looSeadeKast()`
+Loob seadekasti, kus on nupud seadete muutmiseks
+
+#### `muudaRežiimi()`
+Muudab heleda ja tumeda režiimi vahel
+
+#### `avaPilt()`
+Avab pildi importimise akna
+
+### `ViganeStartVajutus`
+Erind, mis visatakse, kui kasutaja vajutab nuppu Alusta, kui mäng juba käib
 
 ## Projekti tegemise protsessi kirjeldus
 Alustasime projekti luues Githubi repositooriumi ja jagasime tööd. Esimese asjane tegime mängu loogika, siis algelise graafilise kasutajaliidese.
