@@ -110,7 +110,7 @@ Mõlemad rühmaliikmed panustasid võrdselt koodi kirjutamisse ja mõtlemisse. T
 Hinnanguline ajakulu projektile oli mõlemal ca 20h.
 
 ## tegemise mured
-Lõpus muutus programm üsna keeruliseks. Kõik töötas, aga koodi oli palju ja oli keeruline aru saada, kus mingi viga on. 
+Lõpus muutus programm üsna keeruliseks. Kõik töötas, aga koodi oli palju ja oli keeruline aru saada, kus mingi viga võis peituda. 
 
 ## Hinnang lõpptulemusele
 Meie arvates on lõpptulemus väga hea. Õnnestus luua mäng, mis sisaldab väga mitmeid erinevaid funktsioone, mis muudab mängimise huvitavaks ja nauditavaks.
