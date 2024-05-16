@@ -21,6 +21,11 @@ Mängu alustamiseks tuleb vajutada nuppu Alusta ja selle peatamiseks nuppu Peata
 Mängulaua algseisu (ehk kõik on surnud) saab luua nupuga Lähtesta.
 Heleda ja tumeda režiimi vahel saab vahetada seadetes vastava linnukese märkimisega.
 All vasakus nurgas on tuluke, mis näitab, kas mäng parajasti jookseb (roheline) või on peatatud (punane).
+Ruudukeste aktiivseks muutmiseks võib nende peale vasaku hiireklahviga vajutada ja lohistada.
+Ruudukeste deaktiveerimiseks võib nende peale parema hiireklahviga vajutada ja lohistada.
+Pildi muutmiseks taustaks tuleb vajutada seadete alt nuppu vali taustapilt ja valida sobiv pilt.
+Seadete alt on võimalik veel mängulauda salvestada pildina, seda salvestatakse projekti kausta nimega "pilt.png".
+
 
 ## Klasside kirjeldus
 
@@ -75,7 +80,7 @@ Arvutab mängulaua järgmise oleku vastavalt eelmisele olekule ning tagastab sel
 ### `PildiImport`
 Klass, mis vastutab pildi importimise eest
 
-#### `piltToBitSet`
+#### `piltToBitSet()`
 Muudab sisseloetud pildi bitsetiks
 
 #### `keskmineHeledus()`
@@ -102,7 +107,7 @@ Erind, mis visatakse, kui kasutaja vajutab nuppu Alusta, kui mäng juba käib
 ## Projekti tegemise protsessi kirjeldus
 Alustasime projekti mõeldes ülessande nõuetele, et saada arusaam oodatavast lõpptulemusest. Seejärel lõime Githubi repositooriumi, mille abil me koodi haldasime. 
 Esimese sammuna arendasime välja mängu loogika ning siis algelise graafilise kasutajaliidese.
-Kui alus oli valmis, lisalime sinna juurde erinevaid funktsioone nagu pildi importimine taustaks, seaded, hele/tume režiim jne. Selle käigus muutus kood üha keerulisemaks ja vähem loetavaks. 
+Kui alus oli valmis, lisasime sinna juurde erinevaid funktsioone nagu pildi importimine taustaks, seaded, hele/tume režiim jne. Selle käigus muutus kood üha keerulisemaks ja vähem loetavaks. 
 Seetõttu muutsime lõpuks koodi loetavamaks ja tegime viimaseid viimistlusi.
 
 ## Rühmaliikmete panus

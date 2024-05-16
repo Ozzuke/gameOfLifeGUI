@@ -115,7 +115,9 @@ public class Juhtimine {
             int veerg = (int) (sündmus.getX() / ruuduSuurus);
             int rida = (int) (sündmus.getY() / ruuduSuurus);
 
+            // kontrollime, kas vajutus oli laua piiridest väljas
             if (veerg >= 0 && veerg < laud.getLauaLaius() && rida >= 0 && rida < laud.getLauaPikkus()) {
+                // leiame ruudu indeksi
                 int index = rida * laud.getLauaLaius() + veerg;
                 if (sündmus.getButton() == MouseButton.SECONDARY) {
                     laud.getRuudud().clear(index);
