@@ -106,7 +106,7 @@ public class Laud extends Canvas {
     }
 
     public void setTaustapilt(File valitudPilt) throws FileNotFoundException {
-        PildiImport pildiImport = new PildiImport(valitudPilt, lauaPikkus * ruuduSuurus, lauaLaius * ruuduSuurus);
+        PildiImport pildiImport = new PildiImport(valitudPilt, lauaPikkus, lauaLaius);
         this.setPildiRuudud(pildiImport.piltToBitSet());
         this.setRuudud(pildiImport.piltToBitSet());
         this.uuendaDisplay();
