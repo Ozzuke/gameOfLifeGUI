@@ -42,7 +42,9 @@ public class SeadedAken {
     private GridPane looSeadeKast() {
         Label darkModeLabel = new Label("Tume režiim");
         Label selectBackgroundLabel = new Label("Vali taustapilt");
+        Label salvestaSeadeidSilt = new Label("Salvesta seadeid");
         Button selectImageButton = new Button("Vali");
+        Button salvestaSeadedNupp = new Button("Salvesta");
 
         selectImageButton.setOnAction(e -> {
             try {
@@ -52,6 +54,7 @@ public class SeadedAken {
             }
         });
         režiimiNupp.setOnAction(e -> muudaRežiimi());
+        salvestaSeadedNupp.setOnAction(e -> Seaded.getInstance().salvestaSeaded());
 
         GridPane settingsPane = new GridPane();
         settingsPane.setHgap(10);
@@ -61,6 +64,8 @@ public class SeadedAken {
         settingsPane.add(new Separator(), 0, 1, 2, 1);
         settingsPane.add(selectBackgroundLabel, 0, 2);
         settingsPane.add(selectImageButton, 1, 2);
+        settingsPane.add(salvestaSeadeidSilt, 0, 3);
+        settingsPane.add(salvestaSeadedNupp, 1, 3);
         settingsPane.setAlignment(Pos.CENTER_RIGHT);
         return settingsPane;
     }

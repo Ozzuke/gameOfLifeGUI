@@ -25,6 +25,20 @@ public class Seaded {
         return instance;
     }
 
+    public void salvestaSeaded() {
+        try (PrintWriter kirjutaja = new PrintWriter(new File("seaded.txt"))) {
+            kirjutaja.println("lauaLaius=" + lauaLaius);
+            kirjutaja.println("lauaPikkus=" + lauaPikkus);
+            kirjutaja.println("ruuduSuurus=" + ruuduSuurus);
+            kirjutaja.println("heleRežiim=" + heleRežiim);
+            kirjutaja.println("mänguKiirus=" + mänguKiirus);
+            kirjutaja.println("lubaAinultKuiSeisab=" + lubaAinultKuiSeisab);
+            kirjutaja.println("jookseb=" + jookseb);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getLauaLaius() {
         return lauaLaius;
     }
