@@ -8,9 +8,9 @@ import java.io.PrintWriter;
 
 public class Seaded {
     private static Seaded instance;
-    private int lauaLaius = 100;
-    private int lauaPikkus = 50;
-    private int ruuduSuurus = 5;
+    private int lauaLaius = 80;
+    private int lauaPikkus = 80;
+    private int ruuduSuurus = 10;
     private boolean heleRežiim = true;
     private double mänguKiirus = 0.1;
     private boolean lubaAinultKuiSeisab = false;
